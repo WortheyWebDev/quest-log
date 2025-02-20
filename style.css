@@ -5,5 +5,34 @@
 }
 
 body {
+    display: flex;
+    justify-content: center;
+    position: relative;
     background-color: gray;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.task-item {
+    display: flex;
+    background-color: white;
+    color: green;
+    margin: 10px 0px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#list {
+    position: relative;
+    width: 300px;
+    margin: auto;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+#delete {
+    position: absolute;
+    right: 10px;
+    font-weight: bold;
 }
