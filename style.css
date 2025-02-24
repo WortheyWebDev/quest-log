@@ -3,3 +3,33 @@
     margin: 0;
     box-sizing: border-box;
 }
+
+body {
+    background: linear-gradient(to bottom right, blue, green)
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+input[type="checkbox"] {
+    margin-right: 15px;
+}
+
+.list-item {
+    display: flex;
+    margin: 10px 0px;
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.checked {
+    background-color: lightgray;
+    color: gray;
+    text-decoration: line-through;
+}
