@@ -2,37 +2,56 @@ const inputField = document.querySelector('.input-field')
 const submitBtn = document.querySelector('.submit-btn')
 const listContainer = document.querySelector('.list-container')
 
-const taskArray = ["Chicken", "Eggs", "Popoto", "Aunt Slappy's Flappy Snackies", "Beef"]
-renderList(taskArray)
-
+let itemArray = []
 
 document.addEventListener('click', function(e) {
     if (e.target.tagName === 'BUTTON') {
-        taskArray.push(inputField.value)
-        renderList(taskArray)
+        getItemInput(e)
+        renderList()
     }
-
-    else if (e.target.type === 'checkbox') {
-        checkItem(e)
+    else if (e.target.type === "checkbox") {
+        setChecked(e)
+    }
+    else if (e.target.classList.contains('delete-btn')) {
+        removeItem(e)
     }
 })
 
-function checkItem(e) {
-    e.target.parentElement.classList.toggle('checked')
+function removeItem(e) {
+    const itemId = e.target.dataset.delete
+    itemArray = itemArray.filter((item) => item.id !== itemId)
+    renderList()
 }
 
-function renderList(taskArray) {
-    let list = ""
-    
-    taskArray.forEach((task) => {
-        list += `
-            <div class="list-item">
-                <input type="checkbox">
-                <p>${task}</p>
-                <p class="delete-btn">X</p>
+function setChecked(e) {
+    const checkedItem = itemArray.find((checkedItem) => checkedItem.id === e.target.dataset.checkbox)
+    if (checkedItem) {
+        checkedItem.isChecked = !checkedItem.isChecked
+        renderList()
+    }
+}
+
+function getItemInput(e) {
+    if (inputField.value.trim() !== "") {
+        itemArray.push({
+            id: crypto.randomUUID(),
+            item: inputField.value,
+            isChecked: false
+        })
+    }
+}
+
+function renderList() {
+    let listItems = ""
+    itemArray.forEach((item) => {
+        listItems += `
+            <div class="list-item ${item.isChecked ? 'checked' : ''}">
+                <input type="checkbox" data-checkbox="${item.id}" ${item.isChecked ? 'checked' : ''}>
+                <p>${item.item}</p>
+                <p class="delete-btn" data-delete="${item.id}">X</p>
             </div>
         `
     })
     inputField.value = ""
-    listContainer.innerHTML = list
+    listContainer.innerHTML = listItems
 }
