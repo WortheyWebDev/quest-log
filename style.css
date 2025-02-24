@@ -21,15 +21,26 @@ input[type="checkbox"] {
 }
 
 .list-item {
+    position: relative;
     display: flex;
     margin: 10px 0px;
     background: #ffffff;
     padding: 10px;
     border-radius: 5px;
+    
+}
+
+.delete-btn {
+    margin-left: auto;
+    padding-left: 20px;
+    text-decoration: none;
 }
 
 .checked {
     background-color: lightgray;
     color: gray;
+}
+
+.checked p:not(.delete-btn) {
     text-decoration: line-through;
 }

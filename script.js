@@ -29,6 +29,7 @@ function renderList(taskArray) {
             <div class="list-item">
                 <input type="checkbox">
                 <p>${task}</p>
+                <p class="delete-btn">X</p>
             </div>
         `
     })
