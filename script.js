@@ -71,6 +71,12 @@ function getItemInput(e) {
 
 function renderList() {
     let listItems = ""
+
+    if (itemArray.length === 0) {
+        questTitle.textContent = "There are no quests..."
+        questDetailsTextarea.placeholder = "Add a quest to get started!"
+    }
+    
     itemArray.forEach((item) => {
         listItems += `
             <div class="list-item ${item.isChecked ? 'checked' : ''}" data-id="${item.id}">

@@ -119,14 +119,13 @@ input[type="checkbox"] {
 
 .delete-btn {
     margin-left: auto;
-    padding-left: 20px;
     text-decoration: none;
     cursor: pointer;
     color: red;
 }
 
 .checked {
-    color: gray;
+    opacity: 40%;
 }
 
 .checked p:not(.delete-btn) {
