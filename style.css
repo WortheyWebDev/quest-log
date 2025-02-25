@@ -122,10 +122,10 @@ input[type="checkbox"] {
     padding-left: 20px;
     text-decoration: none;
     cursor: pointer;
+    color: red;
 }
 
 .checked {
-    background-color: lightgray;
     color: gray;
 }
 
