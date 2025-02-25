@@ -17,6 +17,10 @@ main {
     height: 100vh;
 }
 
+.input-field {
+    line-height: 25px;
+}
+
 input[type="checkbox"] {
     margin-right: 15px;
 }
