@@ -1,3 +1,5 @@
+import { db, collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from "./firebase-config.js";
+
 const inputField = document.querySelector('.input-field')
 const submitBtn = document.querySelector('.submit-btn')
 const listContainer = document.querySelector('.list-container')
@@ -7,9 +9,22 @@ const questTitle = document.querySelector('.quest-title')
 let itemArray = []
 let selectedQuestId = null
 
-document.addEventListener('click', function(e) {
+async function loadQuests() {
+    itemArray = []
+    const querySnapshot = await getDocs(collection(db, "quests"))
+
+    querySnapshot.forEach((doc) => {
+        itemArray.push({ id: doc.id, ...doc.data() })
+    })
+
+    renderList()
+}
+
+document.addEventListener("DOMContentLoaded", loadQuests)
+
+document.addEventListener('click', async function(e) {
     if (e.target.tagName === 'BUTTON') {
-        getItemInput(e)
+        await getItemInput(e)
         renderList()
     }
     else if (e.target.type === "checkbox") {
@@ -35,37 +50,58 @@ questDetailsTextarea.addEventListener('input', function() {
     getQuestDetails()
 })
 
-function getQuestDetails() {
+async function getQuestDetails() {
     if (selectedQuestId) {
         const selectedQuest = itemArray.find((item) => item.id === selectedQuestId)
         if (selectedQuest) {
             selectedQuest.questDetails = questDetailsTextarea.value
+
+            await updateDoc(doc(db, "quests", selectedQuest.id), {
+                questDetails: selectedQuest.questDetails
+            })
         }
     }
 }
 
-function removeItem(e) {
+async function removeItem(e) {
     const itemId = e.target.dataset.delete
-    itemArray = itemArray.filter((item) => item.id !== itemId)
-    renderList()
+
+    if (!itemId) return
+
+    try {    
+        await deleteDoc(doc(db, "quests", itemId))
+        itemArray = itemArray.filter((item) => item.id !== itemId)
+        renderList()
+    } catch (error) {
+        console.error("Error removing document:", error)
+    }
 }
 
-function setChecked(e) {
+async function setChecked(e) {
     const checkedItem = itemArray.find((checkedItem) => checkedItem.id === e.target.dataset.checkbox)
     if (checkedItem) {
         checkedItem.isChecked = !checkedItem.isChecked
+        
+        await updateDoc(doc(db, "quests", checkedItem.id), {
+            isChecked: checkedItem.isChecked
+        })
         renderList()
     }
 }
 
-function getItemInput(e) {
+async function getItemInput(e) {
     if (inputField.value.trim() !== "") {
-        itemArray.push({
+        const newQuest = {
             id: crypto.randomUUID(),
             item: inputField.value,
             isChecked: false,
             questDetails: ""
-        })
+        }
+
+        const docRef = await addDoc(collection(db, "quests"), newQuest)
+        newQuest.id = docRef.id
+        itemArray.push(newQuest)
+        renderList()
     }
 }
 
