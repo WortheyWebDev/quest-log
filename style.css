@@ -6,7 +6,8 @@
 
 body {
     background: linear-gradient(to bottom right, #000000, #333333);
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: #5B4636;
 }
 
 main {
@@ -23,14 +24,16 @@ main {
     display: flex;
     width: 800px;
     height: 500px;
+    z-index: 2;
 }
 
 .quest-log-container::before {
     position: absolute;
     content: "";
     background: url(./images/gold-border.jpg);
+    filter: brightness(130%);
     background-size: cover;
-    height: 102%;
+    height: 103%;
     width: 102%;
     z-index: -1;
     top: 50%;
@@ -152,4 +155,39 @@ input[type="checkbox"] {
 
 .checked p:not(.delete-btn) {
     text-decoration: line-through;
+}
+
+.weapons-img {
+    position: absolute;
+    width: 565px;
+    top: -33px;
+    right: -200px;
+    transform: rotate(90deg);
+    z-index: -2;
+}
+
+/* .laurel-img {
+    position: absolute;
+    height: 300px;
+    left: -95px;
+    bottom: -85px;
+    transform: rotate(-200deg);
+    z-index: -2;
+} */
+
+.laurel-img {
+    position: absolute;
+    height: 300px;
+    left: -165px;
+    bottom: 95px;
+    transform: rotate(-140deg);
+    z-index: -2;
+}
+
+.banner-img {
+    top: -130px;
+    left: -140px;
+    height: 300px;
+    position: absolute;
+    z-index: -2;
 }
