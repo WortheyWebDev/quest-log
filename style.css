@@ -31,7 +31,7 @@ main {
     position: absolute;
     content: "";
     background: url(./images/gold-border.jpg);
-    filter: brightness(130%);
+    filter: brightness(120%);
     background-size: cover;
     height: 103%;
     width: 102%;
@@ -51,6 +51,7 @@ main {
 }
 
 .quest-log-right {
+    position: relative;
     display: flex;
     flex: 1;
     background-image: url(./images/page-texture-right.jpg);
@@ -93,7 +94,6 @@ textarea:focus {
 
 .input-container {
     position: relative;
-    
 }
 
 .input-field {
@@ -166,15 +166,6 @@ input[type="checkbox"] {
     z-index: -2;
 }
 
-/* .laurel-img {
-    position: absolute;
-    height: 300px;
-    left: -95px;
-    bottom: -85px;
-    transform: rotate(-200deg);
-    z-index: -2;
-} */
-
 .laurel-img {
     position: absolute;
     height: 300px;
@@ -190,4 +181,49 @@ input[type="checkbox"] {
     height: 300px;
     position: absolute;
     z-index: -2;
+}
+
+.banner-overlay-img {
+    top: -60px;
+    left: -36px;
+    height: 77px;
+    filter: drop-shadow(5px 5px 4px rgba(0, 0, 0, 0.37));
+    position: absolute;
+}
+
+.dragon-wing-img {
+    position: absolute;
+    top: -240px;
+    right: -180px;
+    transform: rotate(30deg);
+    z-index: -3;
+}
+
+.trumpets-img {
+    position: absolute;
+    z-index: -3;
+    left: 145px;
+    bottom: -110px;
+    transform: rotate(3.5deg);
+}
+
+.filigree {
+    position: absolute;
+    height: 400px;
+    top: -204px;
+    left: 201px;
+    filter: brightness(1.2);
+    z-index: -1;
+}
+
+.shield-img {
+    position: absolute;
+    height: 200px;
+    bottom: 18px;
+    right: 0;
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+    filter: saturate(500%);
+    opacity: 5%;
 }
