@@ -12,6 +12,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (savedQuests) {
         itemArray = JSON.parse(savedQuests)
         renderList()
+        
+        if (itemArray.length > 0) {
+            questTitle.textContent = itemArray[0].item
+            questDetailsTextarea.value = itemArray[0].questDetails
+        }
     }
 })
 
