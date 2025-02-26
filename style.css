@@ -5,7 +5,7 @@
 }
 
 body {
-    background: linear-gradient(to bottom right, blue, green);
+    background: linear-gradient(to bottom right, #000000, #333333);
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -19,7 +19,7 @@ main {
 
 .quest-log-container {
     position: relative;
-    border: 1px solid black;
+    border: 0.5px solid gray;
     display: flex;
     width: 800px;
     height: 500px;
@@ -28,9 +28,10 @@ main {
 .quest-log-container::before {
     position: absolute;
     content: "";
-    background-color: tan;
-    height: 110%;
-    width: 107%;
+    background: url(./images/gold-border.jpg);
+    background-size: cover;
+    height: 102%;
+    width: 102%;
     z-index: -1;
     top: 50%;
     left: 50%;
@@ -40,14 +41,20 @@ main {
 .quest-log-left {
     display: flex;
     flex: 1;
-    background: linear-gradient(to right, #ffffff, #e7e7e7);
+    background-image: url(./images/page-texture-left.jpg);
+    background-size: cover;
+    box-shadow: inset -1px -1px 10px rgba(128, 128, 128, 0.586);
+    padding: 0px 10px 20px 10px;
 }
 
 .quest-log-right {
     display: flex;
     flex: 1;
-    background: linear-gradient(to left, #ffffff, #e7e7e7);
-    border-left: 1px solid black;
+    background-image: url(./images/page-texture-right.jpg);
+    background-size: cover;
+    border-left: 0.5px solid black;
+    box-shadow: inset 1px 1px 10px rgba(128, 128, 128, 0.586);
+    padding: 0px 10px;
 }
 
 textarea {
@@ -58,6 +65,11 @@ textarea {
     padding: 10px;
     resize: none;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    outline: none;
 }
 
 .quests-container {
@@ -87,6 +99,7 @@ textarea {
     margin-bottom: 20px;
     width: 100%;
     border-radius: 5px;
+    padding-left: 5px;
 }
 
 .submit-btn {
@@ -103,8 +116,6 @@ input[type="checkbox"] {
 .list-container {
     flex: 1;
     overflow-y: auto;
-    height: 340px;
-    padding-right: 20px;
     border-top: 1px solid brown;
     border-bottom: 1px solid brown;
 }
@@ -112,7 +123,7 @@ input[type="checkbox"] {
 .list-item {
     position: relative;
     display: flex;
-    padding: 8px 10px;
+    padding: 3px 10px 3px 0px;
     border-radius: 5px;
     margin: 5px auto;
 }

@@ -7,10 +7,15 @@ const questTitle = document.querySelector('.quest-title')
 let itemArray = []
 let selectedQuestId = null
 
+inputField.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        getItemInput(e)
+    }
+})
+
 document.addEventListener('click', function(e) {
     if (e.target.tagName === 'BUTTON') {
         getItemInput(e)
-        renderList()
     }
     else if (e.target.type === "checkbox") {
         setChecked(e)
@@ -46,9 +51,14 @@ function getQuestDetails() {
     }
 }
 
+function sortArrayByBookmark() {
+    itemArray.sort((a, b) => b.isBookmarked - a.isBookmarked)
+}
+
 function setBookmarked(e) {
     const bookmarkedItem = itemArray.find((item) => item.id === e.target.closest('.list-item').dataset.id)
     bookmarkedItem.isBookmarked = !bookmarkedItem.isBookmarked
+    sortArrayByBookmark()
     renderList()
 }
 
@@ -70,12 +80,27 @@ function getItemInput(e) {
     if (inputField.value.trim() !== "") {
         itemArray.push({
             id: crypto.randomUUID(),
-            item: inputField.value,
+            item: toTitleCase(inputField.value),
             isChecked: false,
             questDetails: "",
             isBookmarked: false
         })
     }
+    renderList()
+}
+
+function toTitleCase(str) {
+    const smallWords = ["and", "or", "the", "in", "on", "of", "a", "an", "to", "but", "with"]
+    
+    return str
+        .toLowerCase()
+        .split(" ")
+        .map((word, index) => 
+            (index === 0 || !smallWords.includes(word))
+            ? word.charAt(0).toUpperCase() + word.slice(1)
+            : word
+        )
+        .join(" ")
 }
 
 function renderList() {
