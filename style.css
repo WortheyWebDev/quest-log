@@ -117,8 +117,19 @@ input[type="checkbox"] {
     margin: 5px auto;
 }
 
-.delete-btn {
+.bookmark {
+    height: 16px;
+    cursor: pointer;
+}
+
+.icons {
+    display: flex;
     margin-left: auto;
+    align-items: center;
+    gap: 10px;
+}
+
+.delete-btn {
     text-decoration: none;
     cursor: pointer;
     color: red;

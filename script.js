@@ -18,7 +18,9 @@ document.addEventListener('click', function(e) {
     else if (e.target.classList.contains('delete-btn')) {
         removeItem(e)
     }
-
+    else if (e.target.classList.contains('bookmark')) {
+        console.log("bookmark")
+    }
     else if (e.target.closest('.list-item')) {
         const questId = e.target.closest('.list-item').dataset.id
         selectedQuestId = questId
@@ -64,7 +66,8 @@ function getItemInput(e) {
             id: crypto.randomUUID(),
             item: inputField.value,
             isChecked: false,
-            questDetails: ""
+            questDetails: "",
+            isBookmarked: false
         })
     }
 }
@@ -82,7 +85,10 @@ function renderList() {
             <div class="list-item ${item.isChecked ? 'checked' : ''}" data-id="${item.id}">
                 <input type="checkbox" data-checkbox="${item.id}" ${item.isChecked ? 'checked' : ''}>
                 <p>${item.item}</p>
-                <p class="delete-btn" data-delete="${item.id}">X</p>
+                <div class="icons">
+                    <img class="bookmark" src="./images/bookmark.svg" alt="A bookmark icon.">
+                    <p class="delete-btn" data-delete="${item.id}">X</p>
+                </div>
             </div>
         `
     })
