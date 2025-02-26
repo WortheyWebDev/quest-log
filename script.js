@@ -7,6 +7,14 @@ const questTitle = document.querySelector('.quest-title')
 let itemArray = []
 let selectedQuestId = null
 
+document.addEventListener('DOMContentLoaded', function() {
+    const savedQuests = localStorage.getItem("quests")
+    if (savedQuests) {
+        itemArray = JSON.parse(savedQuests)
+        renderList()
+    }
+})
+
 inputField.addEventListener('keydown', function(e) {
     if (e.key === 'Enter') {
         getItemInput(e)
@@ -27,14 +35,7 @@ document.addEventListener('click', function(e) {
         setBookmarked(e)
     }
     else if (e.target.closest('.list-item')) {
-        const questId = e.target.closest('.list-item').dataset.id
-        selectedQuestId = questId
-
-        const selectedQuest = itemArray.find((item) => item.id === questId)
-            if (selectedQuest) {
-                questDetailsTextarea.value = selectedQuest.questDetails || ""
-                questTitle.textContent = selectedQuest.item
-            }
+        setSelectedQuest(e)
     }
 })
 
@@ -42,11 +43,24 @@ questDetailsTextarea.addEventListener('input', function() {
     getQuestDetails()
 })
 
+function setSelectedQuest(e) {
+    const questId = e.target.closest('.list-item').dataset.id
+        selectedQuestId = questId
+
+        const selectedQuest = itemArray.find((item) => item.id === questId)
+            if (selectedQuest) {
+                questDetailsTextarea.value = selectedQuest.questDetails || ""
+                questTitle.textContent = selectedQuest.item
+            }
+}
+
 function getQuestDetails() {
     if (selectedQuestId) {
         const selectedQuest = itemArray.find((item) => item.id === selectedQuestId)
         if (selectedQuest) {
             selectedQuest.questDetails = questDetailsTextarea.value
+
+            localStorage.setItem("quests", JSON.stringify(itemArray))
         }
     }
 }
@@ -125,4 +139,6 @@ function renderList() {
     })
     inputField.value = ""
     listContainer.innerHTML = listItems
+
+    localStorage.setItem("quests", JSON.stringify(itemArray))
 }
