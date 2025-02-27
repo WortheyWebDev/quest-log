@@ -145,6 +145,18 @@ input[type="checkbox"] {
     cursor: pointer;
 }
 
+.bookmarked {
+    position: absolute;
+    height: 150px;
+    width: 150px;
+    right: 0;
+    bottom: 0;
+    clip-path: polygon(100% 0, 100% 40%, 40% 100%, 0% 100%);
+    background: url(./images/bookmark-texture.jpg);
+    background-size: cover;
+    filter: brightness(150%);
+}
+
 .icons {
     display: flex;
     margin-left: auto;
@@ -230,9 +242,6 @@ input[type="checkbox"] {
     height: 200px;
     bottom: 18px;
     right: 0;
-    /* top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); */
     filter: saturate(500%);
     opacity: 5%;
 }

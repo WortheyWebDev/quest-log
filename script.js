@@ -106,7 +106,8 @@ function getItemInput(e) {
             item: toTitleCase(inputField.value),
             isChecked: false,
             questDetails: "",
-            isBookmarked: false
+            isBookmarked: false,
+            deadline: null
         })
     }
     renderList()
