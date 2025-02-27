@@ -115,6 +115,7 @@ textarea:focus {
 
 input[type="checkbox"] {
     margin-right: 15px;
+    accent-color: green;
 }
 
 .list-container {
@@ -128,8 +129,15 @@ input[type="checkbox"] {
     position: relative;
     display: flex;
     padding: 3px 10px 3px 0px;
-    border-radius: 5px;
     margin: 5px auto;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+}
+
+.list-item:hover {
+    border-top: 1px solid gold;
+    border-bottom: 1px solid gold;
 }
 
 .bookmark {
