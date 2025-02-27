@@ -145,7 +145,8 @@ input[type="checkbox"] {
     cursor: pointer;
 }
 
-.bookmarked {
+.bookmarked-div {
+    display: none;
     position: absolute;
     height: 150px;
     width: 150px;

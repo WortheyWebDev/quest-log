@@ -3,6 +3,7 @@ const submitBtn = document.querySelector('.submit-btn')
 const listContainer = document.querySelector('.list-container')
 const questDetailsTextarea = document.querySelector('.quest-details')
 const questTitle = document.querySelector('.quest-title')
+const bookmarkedDiv = document.querySelector('.bookmarked-div')
 
 let itemArray = []
 let selectedQuestId = null
@@ -16,6 +17,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (itemArray.length > 0) {
             questTitle.textContent = itemArray[0].item
             questDetailsTextarea.value = itemArray[0].questDetails
+        } if (itemArray[0].isBookmarked) {
+            bookmarkedDiv.style.display = 'block'
         }
     }
 })
@@ -50,17 +53,19 @@ questDetailsTextarea.addEventListener('input', function() {
 
 function setSelectedQuest(e) {
     const questId = e.target.closest('.list-item').dataset.id
-        selectedQuestId = questId
+    selectedQuestId = questId
 
-        const selectedQuest = itemArray.find((item) => item.id === questId)
-            if (selectedQuest) {
-                questTitle.textContent = selectedQuest.item
-                if (questDetailsTextarea.value) {
-                    questDetailsTextarea.value = selectedQuest.questDetails || ""
-                } else {
-                    questDetailsTextarea.placeholder = "Enter quest details..."
-                }
+    const selectedQuest = itemArray.find((item) => item.id === questId)
+        if (selectedQuest) {
+            questTitle.textContent = selectedQuest.item
+            if (questDetailsTextarea.value) {
+                questDetailsTextarea.value = selectedQuest.questDetails || ""
+            } else {
+                questDetailsTextarea.placeholder = "Enter quest details..."
             }
+        }
+        
+        bookmarkedDiv.style.display = selectedQuest.isBookmarked ? 'block' : 'none'
 }
 
 function getQuestDetails() {
@@ -107,7 +112,6 @@ function getItemInput(e) {
             isChecked: false,
             questDetails: "",
             isBookmarked: false,
-            deadline: null
         })
     }
     renderList()
