@@ -110,6 +110,8 @@ function getItemInput(e) {
         })
     }
     renderList()
+    questTitle.textContent = itemArray[itemArray.length - 1].item
+    questDetailsTextarea.placeholder = "Enter quest details..."
 }
 
 function toTitleCase(str) {
