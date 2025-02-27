@@ -54,8 +54,12 @@ function setSelectedQuest(e) {
 
         const selectedQuest = itemArray.find((item) => item.id === questId)
             if (selectedQuest) {
-                questDetailsTextarea.value = selectedQuest.questDetails || ""
                 questTitle.textContent = selectedQuest.item
+                if (questDetailsTextarea.value) {
+                    questDetailsTextarea.value = selectedQuest.questDetails || ""
+                } else {
+                    questDetailsTextarea.placeholder = "Enter quest details..."
+                }
             }
 }
 
@@ -126,8 +130,13 @@ function renderList() {
     let listItems = ""
 
     if (itemArray.length === 0) {
+        console.log("test")
         questTitle.textContent = "There are no quests..."
+        questDetailsTextarea.value = ""
         questDetailsTextarea.placeholder = "Add a quest to get started!"
+        questDetailsTextarea.disabled = true
+    } else {
+        questDetailsTextarea.disabled = false
     }
     
     itemArray.forEach((item) => {
