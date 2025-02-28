@@ -41,6 +41,7 @@ document.addEventListener('click', function(e) {
     }
     else if (e.target.classList.contains('bookmark')) {
         setBookmarked(e)
+        setSelectedQuest(e)
     }
     else if (e.target.closest('.list-item')) {
         setSelectedQuest(e)
@@ -102,17 +103,19 @@ function setChecked(e) {
 
 function getItemInput(e) {
     if (inputField.value.trim() !== "") {
-        itemArray.push({
+        const newQuest = {
             id: crypto.randomUUID(),
             item: toTitleCase(inputField.value),
             isChecked: false,
-            questDetails: "",
+            questDetails: "Enter quest details...",
             isBookmarked: false,
-        })
+        }
+        itemArray.push(newQuest)
+        selectedQuestId = newQuest.id
     }
     renderList()
     questTitle.textContent = itemArray[itemArray.length - 1].item
-    questDetailsTextarea.placeholder = "Enter quest details..."
+    questDetailsTextarea.placeholder = itemArray[itemArray.length - 1].questDetails
 }
 
 function toTitleCase(str) {
@@ -133,7 +136,6 @@ function renderList() {
     let listItems = ""
 
     if (itemArray.length === 0) {
-        console.log("test")
         questTitle.textContent = "There are no quests..."
         questDetailsTextarea.value = ""
         questDetailsTextarea.placeholder = "Add a quest to get started!"

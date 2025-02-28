@@ -93,21 +93,17 @@ textarea:focus {
     margin-bottom: 8px;
 }
 
-.input-container {
-    position: relative;
-}
-
 .input-field {
     line-height: 25px;
     margin-top: 10px;
     margin-bottom: 20px;
-    width: 100%;
-    border-radius: 5px;
-    padding-left: 5px;
+    /* width: 100%; */
+    background: none;
+    border: none;
+    border-bottom: 1px solid brown;
 }
 
 .submit-btn {
-    position: absolute;
     top: 47.5px;
     right: 0px;
     padding: 4px 9px;
@@ -133,6 +129,13 @@ input[type="checkbox"] {
     border-top: 1px solid transparent;
     border-bottom: 1px solid transparent;
     cursor: pointer;
+}
+
+.selected-quest {
+    background: linear-gradient(to right,
+        rgba(255, 217, 0, 0),
+        rgba(255, 217, 0, 0.623) 10%,
+        rgba(255, 217, 0, 0));
 }
 
 .list-item:hover {
