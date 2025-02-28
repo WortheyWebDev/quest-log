@@ -4,6 +4,7 @@ const listContainer = document.querySelector('.list-container')
 const questDetailsTextarea = document.querySelector('.quest-details')
 const questTitle = document.querySelector('.quest-title')
 const bookmarkedDiv = document.querySelector('.bookmarked-div')
+const deadlineInput = document.getElementById('deadline-input')
 
 let itemArray = []
 let selectedQuestId = null
@@ -109,6 +110,7 @@ function getItemInput(e) {
             isChecked: false,
             questDetails: "",
             isBookmarked: false,
+            deadline: null
         }
         itemArray.push(newQuest)
         selectedQuestId = newQuest.id
@@ -118,6 +120,7 @@ function getItemInput(e) {
     questTitle.textContent = newQuest.item
     questDetailsTextarea.value = newQuest.questDetails
     questDetailsTextarea.placeholder = "Enter quest details..."
+    deadlineInput.value = newQuest.deadline
 }
 
 function toTitleCase(str) {

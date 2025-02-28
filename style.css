@@ -65,6 +65,7 @@ main {
     background: none;
     border: none;
     margin-bottom: 15px;
+    width: 100%;
 }
 
 textarea {

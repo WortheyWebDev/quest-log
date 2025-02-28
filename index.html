@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Primary CSS -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Flatpickr (date/time library) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
     <title>To-Do List</title>
 </head>
 <body>
@@ -43,6 +48,20 @@
         </div>
     </main>
 
+    <!-- Primary JS -->
     <script src="script.js" type="module"></script>
+
+    <!-- Flatpicker scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        config = {
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+            altInput: true,
+            altFormat: "F j, Y (h:S K)"
+        };
+
+        flatpickr("input[type=datetime-local]", config)
+    </script>
 </body>
 </html>
