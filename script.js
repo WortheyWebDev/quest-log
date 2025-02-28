@@ -5,6 +5,7 @@ const questDetailsTextarea = document.querySelector('.quest-details')
 const questTitle = document.querySelector('.quest-title')
 const bookmarkedDiv = document.querySelector('.bookmarked-div')
 const deadlineInput = document.getElementById('deadline-input')
+const deadlineDisplay = document.querySelector('.deadline-display')
 
 let itemArray = []
 let selectedQuestId = null
@@ -18,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (itemArray.length > 0) {
             questTitle.textContent = itemArray[0].item
             questDetailsTextarea.value = itemArray[0].questDetails
+            deadlineDisplay.textContent = itemArray[0].deadline
         } if (itemArray[0].isBookmarked) {
             bookmarkedDiv.style.display = 'block'
         }
@@ -50,8 +52,13 @@ document.addEventListener('click', function(e) {
 })
 
 deadlineInput.addEventListener('change', function() {
-    selectedQuestId.deadline = deadlineInput.value
-    console.log(selectedQuestId.deadline)
+    const selectedQuest = itemArray.find((item) => item.id === selectedQuestId)
+    if (selectedQuest) {
+        selectedQuest.deadline = deadlineInput.value
+        deadlineInput.textContent = deadlineInput.value
+        localStorage.setItem("quests", JSON.stringify(itemArray))
+    }
+    renderList()
 })
 
 questDetailsTextarea.addEventListener('input', function() {
@@ -66,6 +73,7 @@ function setSelectedQuest(e) {
     if (selectedQuest) {
         questTitle.textContent = selectedQuest.item
         questDetailsTextarea.value = selectedQuest.questDetails || ""
+        deadlineDisplay.textContent = selectedQuest.deadline || ""
     }
         
         bookmarkedDiv.style.display = selectedQuest.isBookmarked ? 'block' : 'none'
@@ -125,7 +133,7 @@ function getItemInput(e) {
     questTitle.textContent = newQuest.item
     questDetailsTextarea.value = newQuest.questDetails
     questDetailsTextarea.placeholder = "Enter quest details..."
-    deadlineInput.value = newQuest.deadline
+    deadlineInput.value = newQuest.deadline || ""
 }
 
 function toTitleCase(str) {
