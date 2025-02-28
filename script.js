@@ -56,14 +56,10 @@ function setSelectedQuest(e) {
     selectedQuestId = questId
 
     const selectedQuest = itemArray.find((item) => item.id === questId)
-        if (selectedQuest) {
-            questTitle.textContent = selectedQuest.item
-            if (questDetailsTextarea.value) {
-                questDetailsTextarea.value = selectedQuest.questDetails || ""
-            } else {
-                questDetailsTextarea.placeholder = "Enter quest details..."
-            }
-        }
+    if (selectedQuest) {
+        questTitle.textContent = selectedQuest.item
+        questDetailsTextarea.value = selectedQuest.questDetails || ""
+    }
         
         bookmarkedDiv.style.display = selectedQuest.isBookmarked ? 'block' : 'none'
 }
