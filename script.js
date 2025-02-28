@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const savedQuests = localStorage.getItem("quests")
     if (savedQuests) {
         itemArray = JSON.parse(savedQuests)
-        renderList()
         
         if (itemArray.length > 0) {
             questTitle.textContent = itemArray[0].item
@@ -20,7 +19,12 @@ document.addEventListener('DOMContentLoaded', function() {
         } if (itemArray[0].isBookmarked) {
             bookmarkedDiv.style.display = 'block'
         }
+        itemArray.forEach((item) => {
+            item.isSelected = false
+        })
+        itemArray[0].isSelected = true
     }
+    renderList()
 })
 
 inputField.addEventListener('keydown', function(e) {
@@ -53,16 +57,21 @@ questDetailsTextarea.addEventListener('input', function() {
 })
 
 function setSelectedQuest(e) {
+    itemArray.forEach((item) => {
+        item.isSelected = false
+    })
     const questId = e.target.closest('.list-item').dataset.id
     selectedQuestId = questId
 
     const selectedQuest = itemArray.find((item) => item.id === questId)
+    selectedQuest.isSelected = true
     if (selectedQuest) {
         questTitle.textContent = selectedQuest.item
         questDetailsTextarea.value = selectedQuest.questDetails || ""
     }
         
         bookmarkedDiv.style.display = selectedQuest.isBookmarked ? 'block' : 'none'
+    renderList()
 }
 
 function getQuestDetails() {
@@ -102,6 +111,9 @@ function setChecked(e) {
 }
 
 function getItemInput(e) {
+    itemArray.forEach((item) => {
+        item.isSelected = false
+    })
     if (inputField.value.trim() !== "") {
         const newQuest = {
             id: crypto.randomUUID(),
@@ -109,6 +121,7 @@ function getItemInput(e) {
             isChecked: false,
             questDetails: "",
             isBookmarked: false,
+            isSelected: true
         }
         itemArray.push(newQuest)
         selectedQuestId = newQuest.id
@@ -148,7 +161,7 @@ function renderList() {
     
     itemArray.forEach((item) => {
         listItems += `
-            <div class="list-item ${item.isChecked ? 'checked' : ''}" data-id="${item.id}">
+            <div class="list-item ${item.isChecked ? 'checked' : ''} ${item.isSelected ? 'selected-quest' : ''}" data-id="${item.id}">
                 <input type="checkbox" data-checkbox="${item.id}" ${item.isChecked ? 'checked' : ''}>
                 <p>${item.item}</p>
                 <div class="icons">
