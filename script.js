@@ -107,15 +107,17 @@ function getItemInput(e) {
             id: crypto.randomUUID(),
             item: toTitleCase(inputField.value),
             isChecked: false,
-            questDetails: "Enter quest details...",
+            questDetails: "",
             isBookmarked: false,
         }
         itemArray.push(newQuest)
         selectedQuestId = newQuest.id
     }
     renderList()
-    questTitle.textContent = itemArray[itemArray.length - 1].item
-    questDetailsTextarea.placeholder = itemArray[itemArray.length - 1].questDetails
+    const newQuest = itemArray[itemArray.length - 1]
+    questTitle.textContent = newQuest.item
+    questDetailsTextarea.value = newQuest.questDetails
+    questDetailsTextarea.placeholder = "Enter quest details..."
 }
 
 function toTitleCase(str) {
