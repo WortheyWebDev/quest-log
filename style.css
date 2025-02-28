@@ -61,6 +61,12 @@ main {
     padding: 0px 10px; 
 }
 
+#deadline-input {
+    background: none;
+    border: none;
+    margin-bottom: 15px;
+}
+
 textarea {
     background-color: transparent;
     width: 100%;
