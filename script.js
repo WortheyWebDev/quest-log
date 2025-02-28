@@ -49,6 +49,11 @@ document.addEventListener('click', function(e) {
     }
 })
 
+deadlineInput.addEventListener('change', function() {
+    selectedQuestId.deadline = deadlineInput.value
+    console.log(selectedQuestId.deadline)
+})
+
 questDetailsTextarea.addEventListener('input', function() {
     getQuestDetails()
 })
