@@ -179,6 +179,7 @@ function getItemInput(e) {
     questDetailsTextarea.placeholder = "Enter quest details..."
     bookmarkedDiv.style.display = newQuest.isBookmarked ? 'block' : 'none'
     deadlinePickerInstance.setDate(newQuest.deadline, false)
+    deadlineClearBtn.classList.add('hide-element')
 
     renderList()
 }

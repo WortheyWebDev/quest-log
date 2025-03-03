@@ -297,16 +297,11 @@ input[type="checkbox"] {
     border: none;
     padding: 0px 5px;
     margin-bottom: 5px;
-    width: 210px;
+    width: 180px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 1rem;
 }
 
 .hide-element {
     display: none;
-}
-
-.deadline-clear-btn {
-    position: absolute;
-    right: 90px;
 }
