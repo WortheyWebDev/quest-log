@@ -4,6 +4,7 @@ const listContainer = document.querySelector('.list-container')
 const questDetailsTextarea = document.querySelector('.quest-details')
 const questTitle = document.querySelector('.quest-title')
 const bookmarkedDiv = document.querySelector('.bookmarked-div')
+const deadlinePicker = document.getElementById('deadline-picker')
 const deadlineClearBtn = document.querySelector('.deadline-clear-btn')
 
 const deadlinePickerInstance = flatpickr("#deadline-picker", {
@@ -11,25 +12,28 @@ const deadlinePickerInstance = flatpickr("#deadline-picker", {
     dateFormat: "Y-m-d H:i",
     altInput: true,
     altInputClass: "flatpickr-style",
-    altFormat: "F j, Y (h:i K)",
-    onChange: function(selectedDates, dateStr, instance) {
-        if (selectedQuestId) {
-            const selectedQuest = itemArray.find((item) => item.id === selectedQuestId)
-            if (selectedQuest) {
-                selectedQuest.deadline = dateStr
-                localStorage.setItem("quests", JSON.stringify(itemArray))
-            }
-        }
-        if (dateStr) {
-            deadlineClearBtn.classList.remove('hide-element')
-        } else {
-            deadlineClearBtn.classList.add('hide-element')
-        }
-    }
+    altFormat: "M j, Y (h:i K)",
+    onChange: editDeadline
 })
 
 let itemArray = []
 let selectedQuestId = null
+
+function editDeadline(selectedDates, dateStr, instance) {
+    if (selectedQuestId) {
+        const selectedQuest = itemArray.find((item) => item.id === selectedQuestId)
+        if (selectedQuest) {
+            selectedQuest.deadline = dateStr
+            localStorage.setItem("quests", JSON.stringify(itemArray))
+        }
+    }
+    if (dateStr) {
+        deadlineClearBtn.classList.remove('hide-element')
+    } else {
+        deadlineClearBtn.classList.add('hide-element')
+    }
+    renderList()
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     const savedQuests = localStorage.getItem("quests")
