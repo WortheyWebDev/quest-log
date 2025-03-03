@@ -163,6 +163,7 @@ input[type="checkbox"] {
         rgba(255, 217, 0, 0) 88%
         );
     color: white;
+    text-shadow: 1px 1px 1px #333;
 }
 
 .list-item:hover {
