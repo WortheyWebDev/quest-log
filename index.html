@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>To-Do List</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+    <title>Quest Log</title>
 </head>
 <body>
     <main>
@@ -22,6 +24,10 @@
             <div class="quest-log-right">
                 <div class="quest-details-container">
                     <h2 class="quest-title"></h2>
+                    <label for="deadline-picker">Deadline:
+                        <input type="datetime-local" id="deadline-picker" name="deadline-picker" placeholder="Click to add a deadline.">
+                        <button class="deadline-clear-btn">Clear</button>
+                    </label>
                     <hr>
                     <textarea class="quest-details" placeholder="Enter quest details..."></textarea>
                 </div>
@@ -39,7 +45,7 @@
             </div>
         </div>
     </main>
-
     <script src="script.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </body>
 </html>
