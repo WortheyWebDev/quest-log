@@ -126,11 +126,12 @@ function getItemInput(e) {
         itemArray.push(newQuest)
         selectedQuestId = newQuest.id
     }
-    renderList()
     const newQuest = itemArray[itemArray.length - 1]
     questTitle.textContent = newQuest.item
     questDetailsTextarea.value = newQuest.questDetails
     questDetailsTextarea.placeholder = "Enter quest details..."
+    bookmarkedDiv.style.display = newQuest.isBookmarked ? 'block' : 'none'
+    renderList()
 }
 
 function toTitleCase(str) {

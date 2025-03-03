@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'SquareCaps';
+    src: url(./fonts/SquareCaps.ttf);
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -47,7 +52,7 @@ main {
     background-image: url(./images/page-texture-left.jpg);
     background-size: cover;
     box-shadow: inset -1px -1px 10px rgba(128, 128, 128, 0.586);
-    padding: 0px 10px 20px 10px;
+    padding: 10px 10px 20px 10px;
 }
 
 .quest-log-right {
@@ -58,7 +63,7 @@ main {
     background-size: cover;
     border-left: 0.5px solid black;
     box-shadow: inset 1px 1px 10px rgba(128, 128, 128, 0.586);
-    padding: 0px 10px; 
+    padding: 10px 10px 0px 10px;
 }
 
 textarea {
@@ -93,11 +98,19 @@ textarea:focus {
     margin-bottom: 8px;
 }
 
+.input-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: baseline;
+    gap: 10px;
+}
+
 .input-field {
     line-height: 25px;
     margin-top: 10px;
+    margin-top: 10px;
     margin-bottom: 20px;
-    /* width: 100%; */
+    width: 200px;
     background: none;
     border: none;
     border-bottom: 1px solid brown;
@@ -105,8 +118,18 @@ textarea:focus {
 
 .submit-btn {
     top: 47.5px;
+    height: 30px;
     right: 0px;
     padding: 4px 9px;
+    background-color: brown;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+input[type="text"] {
+    font-style: italic;
+    opacity: 0.8;
 }
 
 input[type="checkbox"] {
@@ -252,4 +275,11 @@ input[type="checkbox"] {
     right: 0;
     filter: saturate(500%);
     opacity: 5%;
+}
+
+.square-caps {
+    font-family: 'SquareCaps';
+    font-size: 3rem;
+    font-weight: 100;
+    line-height: 0;
 }
