@@ -98,8 +98,9 @@ document.addEventListener('click', e => {
     } else if (e.target.classList.contains('delete-btn')) {
         removeItem(e);
     } else if (e.target.classList.contains('bookmark')) {
+        const questId = e.target.closest('.list-item').dataset.id;
         setBookmarked(e);
-        setSelectedQuest(e);
+        setSelectedQuest(questId);
     } else if (e.target.closest('.list-item')) {
         const questId = e.target.closest('.list-item').dataset.id;
         setSelectedQuest(questId);

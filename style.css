@@ -169,8 +169,7 @@ input[type="checkbox"] {
 }
 
 .list-item:hover {
-    border-top: 1px solid gold;
-    border-bottom: 1px solid gold;
+    backdrop-filter: brightness(95%);
 }
 
 .bookmark {
