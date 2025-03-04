@@ -101,7 +101,8 @@ document.addEventListener('click', e => {
         setBookmarked(e);
         setSelectedQuest(e);
     } else if (e.target.closest('.list-item')) {
-        setSelectedQuest(e);
+        const questId = e.target.closest('.list-item').dataset.id;
+        setSelectedQuest(questId);
     } else if (e.target.classList.contains('deadline-clear-btn')) {
         deadlinePickerInstance.clear();
         const selectedQuest = getSelectedQuest();
@@ -119,9 +120,8 @@ questDetailsTextarea.addEventListener('input', getQuestDetails);
 /* ===== Core Functions ===== */
 
 // When a quest is selected from the list.
-function setSelectedQuest(e) {
+function setSelectedQuest(questId) {
     deselectAll();
-    const questId = e.target.closest('.list-item').dataset.id;
     selectedQuestId = questId;
     const selectedQuest = itemArray.find(item => item.id === questId);
     if (selectedQuest) {
@@ -154,7 +154,11 @@ function setBookmarked(e) {
 // Remove a quest from the list.
 function removeItem(e) {
     const itemId = e.target.dataset.delete;
+    const quest = itemArray.find(item => item.id === itemId)
     itemArray = itemArray.filter(item => item.id !== itemId);
+    if (quest.isSelected && itemArray.length > 0) {
+        setSelectedQuest(itemArray[itemArray.length - 1].id)
+    }
     updateStorage();
     renderList();
 }
