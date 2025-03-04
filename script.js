@@ -157,7 +157,11 @@ function removeItem(e) {
     const quest = itemArray.find(item => item.id === itemId)
     itemArray = itemArray.filter(item => item.id !== itemId);
     if (quest.isSelected && itemArray.length > 0) {
-        setSelectedQuest(itemArray[itemArray.length - 1].id)
+        setSelectedQuest(itemArray[itemArray.length - 1].id);
+    }
+    if (itemArray.length === 0) {
+        deadlinePickerInstance.clear();
+        deadlineClearBtn.classList.add('hide-element');
     }
     updateStorage();
     renderList();
