@@ -51,6 +51,21 @@ function updateSelectedQuestDisplay(quest) {
     deadlinePickerInstance.setDate(quest ? quest.deadline : null, false);
 }
 
+// Check quests with deadlines and flag if one hour or less remains
+function checkDeadlines() {
+    const now = new Date();
+    itemArray.forEach(quest => { 
+        if (quest.deadline) {
+            const deadlineTime = new Date(quest.deadline);
+            const diff = deadlineTime - now;
+            quest.urgent = diff > 0 && diff <= 3600000;
+        } else {
+            quest.urgent = false;
+        }
+    });
+    renderList();
+}
+
 /* ===== Event Handlers ===== */
 
 // Update deadline for selected quest.
@@ -61,7 +76,7 @@ function editDeadline(selectedDates, dateStr) {
         updateStorage();
     }
     deadlineClearBtn.classList.toggle('hide-element', !dateStr);
-    renderList();
+    checkDeadlines();
 }
 
 // Initialize from localStorage once the document loads.
@@ -189,7 +204,8 @@ function getItemInput(e) {
             questDetails: "",
             isBookmarked: false,
             isSelected: true,
-            deadline: null
+            deadline: null,
+            urgent: false
         };
         itemArray.push(newQuest);
         selectedQuestId = newQuest.id;
@@ -230,7 +246,7 @@ function renderList() {
     }
     itemArray.forEach(item => {
         listItems += `
-            <div class="list-item ${item.isChecked ? 'checked' : ''} ${item.isSelected ? 'selected-quest' : ''}" data-id="${item.id}">
+            <div class="list-item ${item.isChecked ? 'checked' : ''} ${item.urgent ? 'urgent' : ''} ${item.isSelected ? 'selected-quest' : ''}" data-id="${item.id}">
                 <input type="checkbox" data-checkbox="${item.id}" ${item.isChecked ? 'checked' : ''}>
                 <p>${item.item}</p>
                 <div class="icons">
@@ -245,3 +261,5 @@ function renderList() {
     listContainer.innerHTML = listItems;
     updateStorage();
 }
+
+setInterval(checkDeadlines, 60000);
