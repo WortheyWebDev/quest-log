@@ -241,6 +241,7 @@ function renderList() {
         questDetailsTextarea.value = "";
         questDetailsTextarea.placeholder = "Add a quest to get started!";
         questDetailsTextarea.disabled = true;
+        deadlineClearBtn.classList.add('hide-element');
     } else {
         questDetailsTextarea.disabled = false;
     }
