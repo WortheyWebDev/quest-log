@@ -40,7 +40,9 @@ function getSelectedQuest() {
 
 // Sanitize user input
 function sanitizeInput(input) {
-    return input.replace(/[<>]/g, "")
+    const div = document.createElement("div")
+    div.textContent = input
+    return div.innerHTML
 }
 
 // Update the quest details pane based on the provided quest.
