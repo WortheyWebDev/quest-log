@@ -38,6 +38,11 @@ function getSelectedQuest() {
     return itemArray.find(item => item.id === selectedQuestId);
 }
 
+// Sanitize user input
+function sanitizeInput(input) {
+    return input.replace(/[<>]/g, "")
+}
+
 // Update the quest details pane based on the provided quest.
 function updateSelectedQuestDisplay(quest) {
     questTitle.textContent = quest ? quest.item : "There are no quests...";
@@ -199,7 +204,7 @@ function getItemInput(e) {
     if (inputField.value.trim() !== "") {
         const newQuest = {
             id: crypto.randomUUID(),
-            item: toTitleCase(inputField.value),
+            item: toTitleCase(sanitizeInput(inputField.value)),
             isChecked: false,
             questDetails: "",
             isBookmarked: false,
