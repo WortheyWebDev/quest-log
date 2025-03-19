@@ -230,9 +230,8 @@ function toTitleCase(str) {
 }
 
 // Sort quests so that bookmarked items appear first.
-function sortArrayByBookmark() {
-    itemArray.sort((a, b) => b.isBookmarked - a.isBookmarked);
-}
+const sortArrayByBookmark = () => itemArray.sort((a, b) => b.isBookmarked - a.isBookmarked)
+
 
 // Render the quest list and update localStorage.
 function renderList() {
