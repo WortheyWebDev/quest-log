@@ -24,19 +24,13 @@ let selectedQuestId = null;
 /* ===== Helper Functions ===== */
 
 // Save current quests array to localStorage.
-function updateStorage() {
-    localStorage.setItem("quests", JSON.stringify(itemArray));
-}
+const updateStorage = () => localStorage.setItem("quests", JSON.stringify(itemArray))
 
 // Set all quests as not selected.
-function deselectAll() {
-    itemArray.forEach(item => item.isSelected = false);
-}
+const deselectAll = () => itemArray.forEach(item => item.isSelected = false)
 
 // Retrieve the currently selected quest.
-function getSelectedQuest() {
-    return itemArray.find(item => item.id === selectedQuestId);
-}
+const getSelectedQuest = () => itemArray.find(item => item.id === selectedQuestId)
 
 // Sanitize user input
 function sanitizeInput(input) {
