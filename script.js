@@ -245,15 +245,15 @@ function renderList() {
     } else {
         questDetailsTextarea.disabled = false;
     }
-    itemArray.forEach(item => {
+    itemArray.forEach(({ id, item, isChecked, questDetails, isBookmarked, isSelected, deadline, urgent }) => {
         listItems += `
-            <div class="list-item ${item.isChecked ? 'checked' : ''} ${item.urgent ? 'urgent' : ''} ${item.isSelected ? 'selected-quest' : ''}" data-id="${item.id}">
-                <input type="checkbox" data-checkbox="${item.id}" ${item.isChecked ? 'checked' : ''}>
-                <p>${item.item}</p>
+            <div class="list-item ${isChecked ? 'checked' : ''} ${urgent ? 'urgent' : ''} ${isSelected ? 'selected-quest' : ''}" data-id="${id}">
+                <input type="checkbox" data-checkbox="${id}" ${isChecked ? 'checked' : ''}>
+                <p>${item}</p>
                 <div class="icons">
-                    <img class="deadline-clock-img ${item.deadline ? '' : 'hide-element'}" id="deadline-clock" src="./images/deadline-clock-img.svg">
-                    <img class="bookmark" src="${item.isBookmarked ? './images/bookmark-fill.svg' : './images/bookmark.svg'}" alt="A bookmark icon.">
-                    <p class="delete-btn" data-delete="${item.id}">X</p>
+                    <img class="deadline-clock-img ${deadline ? '' : 'hide-element'}" id="deadline-clock" src="./images/deadline-clock-img.svg">
+                    <img class="bookmark" src="${isBookmarked ? './images/bookmark-fill.svg' : './images/bookmark.svg'}" alt="A bookmark icon.">
+                    <p class="delete-btn" data-delete="${id}">X</p>
                 </div>
             </div>
         `;
