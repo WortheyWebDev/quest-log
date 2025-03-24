@@ -25,7 +25,7 @@ cd quest-log
 3. Open the "index.html" file in your preferred browser
 
 ## Screenshot
-![Screenshot](https://github.com/WortheyWebDev/quest-log/blob/main/quest-log-screenshot.png)
+![Screenshot](https://github.com/WortheyWebDev/quest-log/blob/main/quest-log-screenshot-1.png)
 
 
 ---
